@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>YouTube MP4 Downloader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      :root { color-scheme: light dark; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; }
+      .card { max-width: 640px; margin: 0 auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 10px; }
+      label { display: block; margin-bottom: .5rem; font-weight: 600; }
+      input[type="url"] { width: 100%; padding: .75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; }
+      button { margin-top: 1rem; padding: .75rem 1rem; font-size: 1rem; background: #111827; color: white; border: none; border-radius: 6px; cursor: pointer; }
+      button:disabled { opacity: .6; cursor: not-allowed; }
+      .note { color: #555; font-size: .9rem; margin-top: .5rem; }
+      .flash { color: #b91c1c; margin-bottom: .75rem; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>YouTube MP4 Downloader</h2>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="/download" onsubmit="btn.disabled=true">
+        <label for="url">YouTube URL</label>
+        <input id="url" name="url" type="url" placeholder="https://www.youtube.com/watch?v=..." required>
+        <button type="submit" name="btn">Download MP4</button>
+        <div class="note">Gets the highest available progressive MP4 (usually up to 720p).</div>
+      </form>
+    </div>
+  </body>
+</html>
